@@ -15,5 +15,5 @@ if g.neovide then
   g.neovide_cursor_trail_size = 0.9
   g.neovide_remember_window_size = true
   g.neovide_padding_top = 50
-  vim.opt.guifont = { "iosevka", ":h20" }
+  vim.opt.guifont = { "iosevka", ":h23" }
 end
