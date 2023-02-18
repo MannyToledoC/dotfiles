@@ -3,54 +3,56 @@ local overrides = require "custom.plugins.overrides"
 ---@type {[PluginName]: NvPluginConfig|false}
 local plugins = {
 
+  -- ["goolord/alpha-nvim"] = { disable = false } -- enables dashboard
+
   -- Override plugin definition options
-  ["catppuccin/nvim"] = {
-    after = "catppuccin",
+  ["neovim/nvim-lspconfig"] = {
     config = function()
-      require("catppuccin").setup({
-        flavour = "mocha", -- latte, frappe, macchiato, mocha
-        background = { -- :h background
-            light = "latte",
-            dark = "mocha",
-        },
-        transparent_background = true,
-        show_end_of_buffer = false, -- show the '~' characters after the end of buffers
-        term_colors = false,
-        dim_inactive = {
-            enabled = false,
-            shade = "dark",
-            percentage = 0.15,
-        },
-        no_italic = false, -- Force no italic
-        no_bold = false, -- Force no bold
-        styles = {
-            comments = { "italic" },
-            conditionals = { "italic" },
-            loops = {},
-            functions = {},
-            keywords = {},
-            strings = {},
-            variables = {},
-            numbers = {},
-            booleans = {},
-            properties = {},
-            types = {},
-            operators = {},
-        },
-        color_overrides = {},
-        custom_highlights = {},
-        integrations = {
-            cmp = true,
-            gitsigns = true,
-            nvimtree = true,
-            telescope = true,
-            notify = false,
-            mini = false,
-            -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-        },
-    })
-    
-  }, 
+      require "plugins.configs.lspconfig"
+      require "custom.plugins.lspconfig"
+    end,
+  },
+
+  -- overrde plugin configs
+  ["nvim-treesitter/nvim-treesitter"] = {
+    override_options = overrides.treesitter,
+  },
+
+  ["williamboman/mason.nvim"] = {
+    override_options = overrides.mason,
+  },
+
+  ["nvim-tree/nvim-tree.lua"] = {
+    override_options = overrides.nvimtree,
+  },
+
+  -- Install a plugin
+  ["max397574/better-escape.nvim"] = {
+    event = "InsertEnter",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
+
+  -- code formatting, linting etc
+  ["jose-elias-alvarez/null-ls.nvim"] = {
+    after = "nvim-lspconfig",
+    config = function()
+      require "custom.plugins.null-ls"
+    end,
+  },
+
+  -- remove plugin
+  -- ["hrsh7th/cmp-path"] = false,
+
+   -- code formatting, linting etc
+   ["abecodes/tabout.nvim"] = {
+    after = "nvim-cmp",
+    wants = {'nvim-treesitter'},
+    config = function()
+      require "custom.plugins.tabout"
+    end,
+  },
 }
 
 return plugins
