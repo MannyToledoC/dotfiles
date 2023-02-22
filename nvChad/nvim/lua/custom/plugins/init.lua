@@ -3,7 +3,7 @@ local overrides = require "custom.plugins.overrides"
 ---@type {[PluginName]: NvPluginConfig|false}
 local plugins = {
 
-  -- ["goolord/alpha-nvim"] = { disable = false } -- enables dashboard
+  ["goolord/alpha-nvim"] = { disable = false }, -- enables dashboard
 
   -- Override plugin definition options
   ["neovim/nvim-lspconfig"] = {
@@ -16,6 +16,11 @@ local plugins = {
   -- overrde plugin configs
   ["nvim-treesitter/nvim-treesitter"] = {
     override_options = overrides.treesitter,
+    config = function()
+      if vim.loop.os_uname().sysname == "Windows_NT" then
+        require('nvim-treesitter.install').compilers = { "clang" }
+      end
+    end,
   },
 
   ["williamboman/mason.nvim"] = {

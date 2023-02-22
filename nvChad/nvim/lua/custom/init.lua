@@ -19,4 +19,7 @@ if g.neovide then
   g.neovide_padding_top = 50
   g.neovide_input_macos_alt_is_meta = true
   vim.opt.guifont = { "iosevka", ":h23" }
+  if vim.loop.os_uname().sysname == "Windows_NT" then
+    vim.opt.guifont = { "iosevka", ":h21" }
+  end
 end
