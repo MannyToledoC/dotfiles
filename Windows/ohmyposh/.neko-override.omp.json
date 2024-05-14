@@ -1,0 +1,61 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "template": "<#fc3a90>\udb80\udd1b<#fc3a90> What should I do next? ...</>"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "#56B6C2",
+          "template": " <#fc3a90>{{ .Path }} ",
+          "properties": {
+            "style": "folder"
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "#ffb7c5",
+          "template": "<#fc3a90>\udb80\udd69 <#fc3a90>git:(</>{{ .HEAD }}<#fc3a90>)</>",
+          "properties": {
+            "branch_icon": "",
+            "fetch_status": false
+          }
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#1a415d",
+          "template": ""
+	}
+      ],
+      "type" : "prompt"
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#FF8000",
+          "template": "<#fc3a91>  \udb81\ude27 </>"
+        }
+      ]
+    }
+  ]
+}
