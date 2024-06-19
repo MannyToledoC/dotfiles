@@ -34,23 +34,21 @@ keymapper("v", "<", "<gv")
 keymapper("v", ">", ">gv")
 
 
--- Move text
-keymapper("v", "<A-j>", ":m .+1<CR>==")
-keymapper("v", "<A-k>", ":m .-2<CR>==")
-keymapper("n", "<A-j>", ":m .+1<CR>==")
-keymapper("n", "<A-k>", ":m .-2<CR>==")
-keymapper("n", "<A-J>", "yyp")
-keymapper("n", "<A-K>", "yyp")
-keymapper("n", "p", '"_dP')
-keymapper("v", "p", '"_dP')
-
 
 -- Insert
 -- Get out of i
 keymapper('i', 'jk', '<ESC>')
 keymapper('i', 'JK', '<ESC>')
-keymapper('v', 'jk', '<ESC>')
-keymapper('v', 'JK', '<ESC>')
 
 -- Telescope
 keymapper('n', '<leader>p', ':lua require"telescope.builtin".find_files()<CR>')
+
+-- Saving
+keymapper('i', '<C-s>', "<ESC>:w<CR>i")
+
+-- NvimTree
+-- keymapper('n', "<leader>e", ":NvimTreeToggle<CR>")
+
+vim.keymap.set('n', '<leader>e', function()
+  vim.cmd("NvimTreeToggle")
+end, {desc = "Toggle NvimTree"})
